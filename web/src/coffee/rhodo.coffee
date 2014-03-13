@@ -1,5 +1,5 @@
-WIDTH = 320
-HEIGHT = 480
+WIDTH = 300
+HEIGHT = 450
 
 MainStage = require('./view/mainstage')
 
@@ -12,6 +12,8 @@ $ ->
 
   animate = () ->
     requestAnimFrame( animate )
+
+    stage.step()
 
     renderer.render(stage)
 
