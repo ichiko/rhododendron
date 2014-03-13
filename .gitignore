@@ -1,0 +1,7 @@
+#.gitignore
+.git
+web/.bundle
+web/bower_components
+web/node_modules
+web/vendor
+web/public/lib
