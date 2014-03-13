@@ -4,8 +4,7 @@ module.exports = (grunt) ->
 		watch:
 			app:
 				files: [
-					'src/coffee/*.coffee'
-					'src/templates/*.html'
+					'src/coffee/**/*.coffee'
 				]
 				tasks: ['coffee:app', 'browserify:app']
 			css:
@@ -26,15 +25,12 @@ module.exports = (grunt) ->
 			app:
 				files: [
 					'public/script/main.js' : [
-						'src/js/kotoawase.js'
+						'src/js/rhodo.js'
 					]
 				]
-				options:
-					transform: ['brfs']
 			spec:
 				files: [
-					'spec/js/generator.spec.js' : ['spec/coffee/generator.spec.coffee']
-					'spec/js/kana.spec.js' : ['spec/coffee/kana.spec.coffee']
+					'spec/js/model/obstacle.spec.js' : ['spec/coffee/model/obstacle.spec.coffee']
 				]
 				options:
 					transform: ['coffeeify']
@@ -42,7 +38,7 @@ module.exports = (grunt) ->
 			app:
 				expand: true
 				cwd: 'src/coffee'
-				src: ['*.coffee']
+				src: ['**/*.coffee']
 				dest: 'src/js/'
 				ext: '.js'
 		sass:
@@ -55,7 +51,7 @@ module.exports = (grunt) ->
 		uglify:
 			options:
 				mangle:
-					except: ['Vue']
+					except: ['PIXI']
 			app:
 				files: [
 					'public/script/main.min.js' : [

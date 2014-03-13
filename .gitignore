@@ -1,7 +1,11 @@
 #.gitignore
+.DS_Store
 .git
 web/.bundle
 web/bower_components
 web/node_modules
 web/vendor
 web/public/lib
+web/public/script
+web/spec/js
+web/src/js
