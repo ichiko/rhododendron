@@ -13,9 +13,9 @@ describe 'Obstacle', ->
       Obstacle.MaximumDepth = 100
 
     it '限界深度を越えないとき、trueを返す', ->
-      obj = new Obstacle(99, 1)
+      obj = new Obstacle(98, 1)
       expect(obj.step()).toBe(true)
 
-    it '限界深度を越えたとき、falseを返す', ->
-      obj = new Obstacle(99, 2)
+    it '限界深度を越えるとき、falseを返す', ->
+      obj = new Obstacle(99, 1)
       expect(obj.step()).toBe(false)

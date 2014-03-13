@@ -5,8 +5,9 @@ class Obstacle
   setPosition: (@x, @y) ->
 
   step: ->
-    @depth += @speed
-    return (@depth <= Obstacle.MaximumDepth)
+    if (@depth < Obstacle.MaximumDepth)
+      @depth += @speed
+    return (@depth < Obstacle.MaximumDepth)
 
 Obstacle.MinimunDepth = 0
 Obstacle.MaximumDepth = 100
