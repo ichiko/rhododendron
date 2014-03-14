@@ -1,4 +1,5 @@
 Obstacle = require('./parts/obstacle')
+Bullet = require('./parts/bullet')
 RoundCannon = require('./parts/roundcannon')
 TitleLayer = require('./parts/titleLayer')
 
@@ -19,8 +20,6 @@ class MainStage extends PIXI.Stage
     circle.drawCircle(rx, ry, rr)
     @addChild(circle)
 
-    console.log @gameEngine.obstacles
-
     @obstacle = new Obstacle(@gameEngine.obstacles[0])
     @addChild(@obstacle)
 
@@ -30,11 +29,21 @@ class MainStage extends PIXI.Stage
       @addChild(cannon)
       @cannons.push cannon
 
+    @bullets = []
+
     @
 
   update: ->
     @obstacle.update()
     for cannon in @cannons
       cannon.update()
+    for bullet in @bullets
+      bullet.update()
+
+    newBullets = @gameEngine.newBullets
+    for bulletModel in newBullets
+      bullet = new Bullet(bulletModel)
+      @addChild(bullet)
+      @bullets.push bullet
 
 module.exports = MainStage

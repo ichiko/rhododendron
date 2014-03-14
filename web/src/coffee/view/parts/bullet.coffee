@@ -2,7 +2,7 @@ CircleShape = require('./shape').CircleShape
 
 class Bullet extends CircleShape
   constructor: (@model) ->
-  	super @model.x, @model.y, 5
+	super @model.x, @model.y, window.RHConfig.Bullet.Radian
 
   update: ->
     if ! @model?

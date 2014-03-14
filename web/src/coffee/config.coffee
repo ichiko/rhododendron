@@ -13,7 +13,11 @@ RHConfig = {
     Rotate: 5
     Interval: 200
     Radian: 10
-    ShotDistance: 10
+    Shot:
+      StartPointMulti: 10
+      VectorMulti: 2
+  Bullet:
+    Radian: 3
 }
 
 window.RHConfig = RHConfig

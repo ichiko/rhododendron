@@ -15,9 +15,9 @@ class RoundCannon
       @prevTime = now
       vec_x = x - @x
       vec_y = y - @y
-      denom = Math.sqrt(vec_x * vec_x + vec_y * vec_y)
+      denom = Math.sqrt(vec_x * vec_x + vec_y * vec_y) / window.RHConfig.Cannon.Shot.VectorMulti
       vec = {x: vec_x / denom, y: vec_y / denom}
-      shotPositionMulti = window.RHConfig.Cannon.ShotDistance
+      shotPositionMulti = window.RHConfig.Cannon.Shot.StartPointMulti
       x = @x + vec.x * shotPositionMulti
       y = @y + vec.y * shotPositionMulti
       return new Bullet(x, y, vec)
