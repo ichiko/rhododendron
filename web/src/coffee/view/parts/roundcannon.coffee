@@ -1,22 +1,8 @@
-class RoundCannon extends PIXI.DisplayObjectContainer
+CircleShape = require('./shape').CircleShape
+
+class RoundCannon extends CircleShape
   constructor: (@model) ->
-    super
-
-  initialize: ->
-
-    color = 0xffffff
-    graph = new PIXI.Graphics()
-    graph.lineStyle(1, color, 1)
-    graph.drawCircle(@model.center_x, @model.center_y, @model.radius)
-    @addChild(graph)
-
-    texture = PIXI.Texture.fromImage("image/cannon.png")
-    cannon = new PIXI.Sprite(texture)
-    cannon.anchor = new PIXI.Point(0.5, 0.5)
-    @addChild(cannon)
-    @cannon = cannon
-
-    @
+    super @model.x, @model.y, 10, 0xffffff
 
   step: ->
     if ! @model?
@@ -24,8 +10,8 @@ class RoundCannon extends PIXI.DisplayObjectContainer
 
     @model.step()
 
-    @cannon.position.x = @model.x
-    @cannon.position.y = @model.y
-    @cannon.rotation = @model.radian + 0.5 * Math.PI
+    @position.x = @model.x
+    @position.y = @model.y
+    #@rotation = @model.radian
 
 module.exports = RoundCannon

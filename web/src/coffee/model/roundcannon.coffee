@@ -1,7 +1,10 @@
 class RoundCannon
   # @param x,y center of goround circle
-  constructor: (@center_x, @center_y, @radius, @rotation)->
-    @angle = 90
+  constructor: (@center_x, @center_y, @radius, @rotation, initialAngle = 0)->
+    @setAngle(initialAngle)
+
+  setAngle: (angle) ->
+    @angle = angle
     @updatePosition()
 
   step: ->
