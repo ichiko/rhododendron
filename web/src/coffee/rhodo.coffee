@@ -1,9 +1,6 @@
-window.RHConfig = {}
-window.RHConfig =
-  Screen:
-    Width: 300
-    Height: 450
+require('./config')
 
+GameEngine = require('./controller/gameengine')
 MainStage = require('./view/mainstage')
 
 $ ->
@@ -12,12 +9,16 @@ $ ->
 
   $('div#screen').append(renderer.view)
 
-  stage = new MainStage().initialize()
+  engine = new GameEngine()
+  engine.addObstacleAtPoint(100, 100)
+
+  stage = new MainStage(engine).initialize()
 
   animate = () ->
     requestAnimFrame( animate )
 
-    stage.step()
+    engine.step()
+    stage.update()
 
     renderer.render(stage)
 

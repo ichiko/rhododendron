@@ -1,42 +1,40 @@
-MObstacle = require('../model/straightobject').Obstacle
 Obstacle = require('./parts/obstacle')
-
-MRoundCannon = require('../model/roundcannon')
 RoundCannon = require('./parts/roundcannon')
-
 TitleLayer = require('./parts/titleLayer')
 
 class MainStage extends PIXI.Stage
-  constructor: ->
+  constructor: (@gameEngine) ->
     super
 
   initialize: ->
     @addChild(new TitleLayer())
 
-    screen = window.RHConfig.Screen
-    rx = screen.Width / 2
-    ry = screen.Height - 100
-    rr = 50
+    CannonConfig = window.RHConfig.Cannon
+    rx = CannonConfig.Orbit.X
+    ry = CannonConfig.Orbit.Y
+    rr = CannonConfig.Orbit.Radian
 
     circle = new PIXI.Graphics()
     circle.lineStyle(1, 0xa0a0a0, 1)
     circle.drawCircle(rx, ry, rr)
     @addChild(circle)
 
-    @obstacle = new Obstacle(new MObstacle(100, 100, {x: 0, y: 1}))
+    console.log @gameEngine.obstacles
+
+    @obstacle = new Obstacle(@gameEngine.obstacles[0])
     @addChild(@obstacle)
 
     @cannons = []
-    for initAngle in [90, 270]
-      cannon = new RoundCannon(new MRoundCannon(rx, ry, rr, 4, initAngle))
+    for cannonModel in @gameEngine.cannons
+      cannon = new RoundCannon(cannonModel)
       @addChild(cannon)
       @cannons.push cannon
 
     @
 
-  step: ->
-    @obstacle.step()
+  update: ->
+    @obstacle.update()
     for cannon in @cannons
-      cannon.step()
+      cannon.update()
 
 module.exports = MainStage

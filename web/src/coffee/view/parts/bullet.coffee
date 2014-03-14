@@ -1,8 +1,8 @@
 CircleShape = require('./shape').CircleShape
 
-class RoundCannon extends CircleShape
+class Bullet extends CircleShape
   constructor: (@model) ->
-    super @model.x, @model.y, window.RHConfig.Cannon.Radian
+  	super @model.x, @model.y, 5
 
   update: ->
     if ! @model?
@@ -10,6 +10,5 @@ class RoundCannon extends CircleShape
 
     @position.x = @model.x
     @position.y = @model.y
-    #@rotation = @model.radian
 
-module.exports = RoundCannon
+module.exports = Bullet
