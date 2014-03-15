@@ -37,8 +37,17 @@ class MainStage extends PIXI.Stage
     @obstacle.update()
     for cannon in @cannons
       cannon.update()
-    for bullet in @bullets
-      bullet.update()
+
+    rmidx = []
+    for i in [0...@bullets.length]
+      bullet = @bullets[i]
+      if ! bullet.update()
+        rmidx.push i
+    if rmidx.length > 0
+      for i in [rmidx.length - 1..0]
+        idx = rmidx[i]
+        @removeChild(@bullets[idx])
+        @bullets.splice(idx, 1)
 
     newBullets = @gameEngine.newBullets
     for bulletModel in newBullets

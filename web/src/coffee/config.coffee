@@ -5,6 +5,11 @@ RHConfig = {
   Screen:
     Width: WIDTH
     Height: HEIGHT
+    Bounds:
+      Left: -10
+      Top: -10
+      Right: WIDTH + 10
+      Bottom: HEIGHT + 10
   Cannon:
    	Orbit:
    	  X: WIDTH / 2

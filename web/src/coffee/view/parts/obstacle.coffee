@@ -6,8 +6,13 @@ class Obstacle extends BoxShape
 
   update: ->
     if ! @model?
-      return
+      return false
+
+    if ! @model.life
+      return false
 
     @setPosition(@model.x, @model.y)
+
+    return true
 
 module.exports = Obstacle
